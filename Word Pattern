@@ -1,0 +1,15 @@
+class Solution {
+    public boolean wordPattern(String pattern, String s) {
+     String[] st=s.split(" ");
+     Map<Character,String> map=new HashMap<>();
+     if(st.length!=pattern.length()) return false;
+     for(int i=0;i<pattern.length();i++){
+         char a=pattern.charAt(i);
+         if(map.containsKey(a) && !map.get(a).equals(st[i])) return false;
+         if(map.containsKey(a) && map.get(a).equals(st[i])) continue;
+         if(map.containsValue(st[i])) return false;
+         map.put(a,st[i]);
+              }
+           return true;
+    }
+}
