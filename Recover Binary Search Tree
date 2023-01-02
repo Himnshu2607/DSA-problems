@@ -1,0 +1,19 @@
+class Solution {
+    TreeNode one,two,pre;
+    void inorder(TreeNode root){
+        if(root==null) return;
+        inorder(root.left);
+        if(one==null &&(pre==null || pre.val>=root.val)) one=pre;
+        if(one !=null &&pre.val>=root.val) two=root;
+        pre=root;
+        inorder(root.right);
+    }
+    public void recoverTree(TreeNode root) {
+      if(root==null) return;
+      one=two=pre=null;
+      inorder(root);
+      int temp=one.val;
+      one.val=two.val;
+      two.val=temp;
+    }
+}
